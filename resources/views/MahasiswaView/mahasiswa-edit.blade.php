@@ -1,0 +1,36 @@
+@extends('layouts.app2')
+@section('title','Edit Mahasiswa')
+@section('content')
+<div class = "container">
+<div class = "row">
+<div class = "col-8">
+<br>
+<h1 class = "mt3"> Edit Mahasiswa</h1>
+<br>
+<form method ="post" action="/mahasiswa/{{$mahasiswa->id}}" enctype="multipart/form-data">
+@method('patch')
+@csrf
+  <div class="form-group">
+    <label for="nip">NIP : </label>
+    <input type="text" class="form-control @error('nip')is-invalid @enderror" id="nip" 
+    placeholder="Masukan NIM" name="nim" value="{{$mahasiswa->nim}}">
+    @error('nip') <div class="invalid-feedback">{{$message}}</div> @enderror
+  </div>
+  <div class="form-group">
+    <label for="nama">Nama : </label>
+    <input type="text" class="form-control @error('nama')is-invalid @enderror" id="nama" 
+    placeholder="Masukan Nama " name="nama" value="{{$mahasiswa->nama}}">
+    @error('nama') <div class="invalid-feedback">{{$message}}</div> @enderror
+  </div>
+  <div class="form-group">
+    <label for="foto">Upload Foto :</label>
+    <br>
+    <input type="file" id="foto" name="foto" value="{{$mahasiswa->foto}}">
+    <br> 
+  </div>
+  <button type ="submit" class="btn btn-primary">Save</button>
+</form>
+</div>
+</div>
+</div>
+@endsection
